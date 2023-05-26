@@ -19,3 +19,5 @@ streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index)) # 설정�
 
 # Display the table on the page.
 streamlit.dataframe(my_fruit_list) # 저장된 S3 데이터를 데이터프레임으로 설정
+
+streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),['Avocado', 'Strawberries'])
