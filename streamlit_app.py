@@ -23,6 +23,6 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 # Display the table on the page.
 # streamlit.dataframe(my_fruit_list) # 저장된 S3 데이터를 데이터프레임으로 설정
-streamlit.dataframe(fruits_selected) # 픽스 데이터가 설정된 버전으로 변경
+streamlit.dataframe(fruits_to_show) # 픽스 데이터가 설정된 버전으로 변경
 
 
