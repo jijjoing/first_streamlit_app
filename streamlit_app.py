@@ -25,8 +25,10 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # streamlit.dataframe(my_fruit_list) # 저장된 S3 데이터를 데이터프레임으로 설정
 streamlit.dataframe(fruits_to_show) # 픽스 데이터가 설정된 버전으로 변경
 
+# New Section to display fruityvice api response
+streamlit.header('Fruityvice Fruit Advice!')
 
 import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response)
+streamlit.text(fruityvice_response.json())
 
