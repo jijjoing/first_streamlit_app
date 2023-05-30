@@ -28,6 +28,9 @@ streamlit.dataframe(fruits_to_show) # 픽스 데이터가 설정된 버전으로
 # New Section to display fruityvice api response
 streamlit.header('Fruityvice Fruit Advice!')
 
+fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi') # 텍스트 입력 상자
+streamlit.write('The user entered ', fruit_choice) # API 일부 호출
+
 import requests
 # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon") # watermelon json 파일 불러오기
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
