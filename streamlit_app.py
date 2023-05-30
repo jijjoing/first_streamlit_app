@@ -40,3 +40,7 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # 저장한 변수를 데이터프레임으로 변경
 streamlit.dataframe(fruityvice_normalized)
+
+
+# snowflake 파이썬 커넥터 연결
+import snowflake.connector
