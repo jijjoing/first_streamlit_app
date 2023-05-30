@@ -33,7 +33,7 @@ streamlit.write('The user entered ', fruit_choice) # API 일부 호출
 
 import requests
 # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon") # watermelon json 파일 불러오기
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 # streamlit.text(fruityvice_response.json()) # just writes the data to the screen # 불러온 json 파일 형식 그대로 출력
 
 # [fruityvice_normalized]변수에 정규화된 json 파일을 저장
