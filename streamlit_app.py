@@ -30,5 +30,9 @@ streamlit.header('Fruityvice Fruit Advice!')
 
 import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response.json())
+streamlit.text(fruityvice_response.json()) # just writes the data to the screen
 
+# [fruityvice_normalized]변수에 정규화된 json 파일을 저장
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# 저장한 변수를 데이터프레임으로 변경
+streamlit.dataframe(fruityvice_normalized)
