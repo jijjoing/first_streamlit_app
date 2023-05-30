@@ -29,8 +29,9 @@ streamlit.dataframe(fruits_to_show) # 픽스 데이터가 설정된 버전으로
 streamlit.header('Fruityvice Fruit Advice!')
 
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response.json()) # just writes the data to the screen
+# fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon") # watermelon json 파일 불러오기
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+# streamlit.text(fruityvice_response.json()) # just writes the data to the screen # 불러온 json 파일 형식 그대로 출력
 
 # [fruityvice_normalized]변수에 정규화된 json 파일을 저장
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
