@@ -65,6 +65,7 @@ def insert_row_snowflake(new_fruit):
  
 add_my_fruit = streamlit.text_input('What fruit would you like to add?') # 텍스트 입력 상자
 
+streamlit.header("View Our Fruit List-Add Your Favorites!")
 if streamlit.button('Get Fruit List'):
    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
    streamlit.write(insert_row_snowflake(add_my_fruit))
