@@ -29,21 +29,27 @@ streamlit.dataframe(fruits_to_show) # 픽스 데이터가 설정된 버전으로
 
 # New Section to display fruityvice api response
 streamlit.header('Fruityvice Fruit Advice!')
-
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi') # 텍스트 입력 상자
-streamlit.write('The user entered ', fruit_choice) # API 일부 호출
-
+#  fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi') # 텍스트 입력 상자
+#  streamlit.write('The user entered ', fruit_choice) # API 일부 호출
 # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon") # watermelon json 파일 불러오기
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 # streamlit.text(fruityvice_response.json()) # just writes the data to the screen # 불러온 json 파일 형식 그대로 출력
+try :
+  fruit_choice = streamlit.text_input('What fruit would you like information about?')
+  if not fruit_choice:
+      streamlit.error("Please select a fruit to get information.")
+   else:
+      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+      # [fruityvice_normalized]변수에 정규화된 json 파일을 저장
+      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+      # 저장한 변수를 데이터프레임으로 변경
+      streamlit.dataframe(fruityvice_normalized)
+except URLErrir as e:
+    # don't run anything past here while we troubleshoot
+    streamlit.stop()
 
-# [fruityvice_normalized]변수에 정규화된 json 파일을 저장
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# 저장한 변수를 데이터프레임으로 변경
-streamlit.dataframe(fruityvice_normalized)
 
-# don't run anything past here while we troubleshoot
-streamlit.stop()
+
+
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
