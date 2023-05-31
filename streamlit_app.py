@@ -61,8 +61,8 @@ if streamlit.button('Get Fruit Load List'):
 
 
 
-add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit') # 텍스트 입력 상자
+# add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit') # 텍스트 입력 상자
 
-streamlit.write('Thanks for adding ', add_my_fruit)
-# This will not correctly, but just go with it for now
-my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+# streamlit.write('Thanks for adding ', add_my_fruit)
+# # This will not correctly, but just go with it for now
+# my_cur.execute("insert into fruit_load_list values ('from streamlit')")
