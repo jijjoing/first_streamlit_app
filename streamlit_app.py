@@ -27,22 +27,21 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # streamlit.dataframe(my_fruit_list) # 저장된 S3 데이터를 데이터프레임으로 설정
 streamlit.dataframe(fruits_to_show) # 픽스 데이터가 설정된 버전으로 변경
 
+# create the repeatable code block (called a function)
+def get_fruityvice_data(this_fruit_choice):
+  fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
+  fruityvice_normalized = pandas.json_normalized(fruityvice_response.json())
+  return fruityvice_normalized
+
 # New Section to display fruityvice api response
 streamlit.header('Fruityvice Fruit Advice!')
-#  fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi') # 텍스트 입력 상자
-#  streamlit.write('The user entered ', fruit_choice) # API 일부 호출
-# fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon") # watermelon json 파일 불러오기
-# streamlit.text(fruityvice_response.json()) # just writes the data to the screen # 불러온 json 파일 형식 그대로 출력
 try:
   fruit_choice = streamlit.text_input('What fruit would you like information about?')
   if not fruit_choice:
       streamlit.error("Please select a fruit to get information.")
   else:
-      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-      # [fruityvice_normalized]변수에 정규화된 json 파일을 저장
-      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-      # 저장한 변수를 데이터프레임으로 변경
-      streamlit.dataframe(fruityvice_normalized)
+      back_from_function = get_fruityvice_data(fruit_choice)
+      streamlit.dataframe(back_from_function)
       
 except URLErrir as e:
     # don't run anything past here while we troubleshoot
