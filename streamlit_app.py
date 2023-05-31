@@ -36,13 +36,13 @@ streamlit.header('Fruityvice Fruit Advice!')
 try :
   fruit_choice = streamlit.text_input('What fruit would you like information about?')
   if not fruit_choice:
-      streamlit.error("Please select a fruit to get information.")
+        streamlit.error("Please select a fruit to get information.")
    else:
-      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-      # [fruityvice_normalized]변수에 정규화된 json 파일을 저장
-      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-      # 저장한 변수를 데이터프레임으로 변경
-      streamlit.dataframe(fruityvice_normalized)
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+        # [fruityvice_normalized]변수에 정규화된 json 파일을 저장
+        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+        # 저장한 변수를 데이터프레임으로 변경
+        streamlit.dataframe(fruityvice_normalized)
 except URLErrir as e:
     # don't run anything past here while we troubleshoot
     streamlit.stop()
